@@ -6,7 +6,7 @@ const isAuth = require("./middleware/is-auth");
 const graphQlschema = require("./graphql/schema/index");
 const graphQlresolvers = require("./graphql/resolvers/index");
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 const app = express();
 
