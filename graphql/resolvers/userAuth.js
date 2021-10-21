@@ -32,6 +32,19 @@ async function tokengenerator() {
 
 
 module.exports = {
+  user: async (args, req) => {
+    try {
+     const users = await User.find();
+      return users.map((user) => {
+        return {
+          ...user._doc,
+          _id: user.id,
+        };
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
     createUser: async (args) => {
         try {
           const userID = await User.findOne({ phone: args.userInput.phone });
@@ -92,13 +105,7 @@ module.exports = {
 
       },
       userProfile: async (req) => {
-        if (!req.isAuth) {
-          throw new Error({ status: "error", error: "You not have access" });
-        }
-        if (req.userType !== "USER") {
-          throw new Error({ status: "error", error: "You not have access" });
-        }
-    
+        
         try {
           const user = await User.findById({ _id: req.userId });
           return {
