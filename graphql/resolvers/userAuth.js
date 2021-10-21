@@ -61,9 +61,10 @@ module.exports = {
           throw err;
         }
       },
-      userlogin: async ({ phone, password }) => {
-        try {
-          const user = await User.findOne({ phone: phone });
+      userlogin: async ({ username, password }) => {
+        console.log(username);
+        console.log(password);
+        const user = await User.findOne({ phone: username });
           
           if (!user) {
             throw new Error("User not exist!");
@@ -74,7 +75,7 @@ module.exports = {
             }
     
             const token = jwt.sign(
-              { userId: user.id, phone: user.phone},
+              { userId: user.id, userphone: user._doc.phone,userType: "USER"},
               "superkey",
               {
                 expiresIn: "1d",
@@ -87,9 +88,7 @@ module.exports = {
               userType: "USER",
               tokenExpiration: 1
             };
-          }catch (err) {
-            throw err;
-          }
+         
 
       },
       userProfile: async (req) => {

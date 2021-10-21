@@ -2,6 +2,6 @@
     "env": {
         "MONGO_USER": "USER",
         "MONGO_PASSWORD": "USER",
-        "MONGO_DB": "START YOUR TOUR"
+        "MONGO_DB": "SYT"
     }
 }

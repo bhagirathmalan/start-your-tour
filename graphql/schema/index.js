@@ -8,6 +8,7 @@ ${userType}
  type RootQuery{
     user : User!
     userlogin(username: String! , password: String! ): UserAuthData!
+    userProfile : User!
 
  }
 
