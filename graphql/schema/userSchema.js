@@ -6,6 +6,7 @@ type User{
     email : String
     phone: String
     password: String
+    
 }
 
 type UserAuthData{
