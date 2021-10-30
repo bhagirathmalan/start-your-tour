@@ -8,6 +8,7 @@ const bidSchema = new Schema(
           type: String,
           required: true,
         },
+
         departurelocation: {
             type: String,
             required: true,

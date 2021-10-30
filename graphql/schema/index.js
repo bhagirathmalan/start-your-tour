@@ -4,6 +4,9 @@ const { adminType } = require("./adminSchema");
 const { agencyType } = require("./agencySchema");
 const { bidType } = require("./bidSchema");
 const { custompackageType } = require("./custompackageSchema");
+const { itineraryType } = require("./itinerarySchema");
+
+
 
 
 
@@ -12,7 +15,9 @@ ${userType}
 ${adminType}
 ${agencyType}
 ${bidType}
+${itineraryType}
 ${custompackageType}
+
 
 
 
@@ -44,9 +49,10 @@ ${custompackageType}
     updateAdmin(name: String , password: String): Admin!
     createCategory(name: String!):Category
     createServices(name:String!):Services
+    
 
     createBid(bidInput:BidInput):Bid
-
+    createItinerary(itineraryInput:ItineraryInput):Itinerary!
 
     createAgency(agencyInput: AgencyInput):Agency!
     updateAgencyProfile( updateAgency: UpdateAgency, _id:ID!):Agency!

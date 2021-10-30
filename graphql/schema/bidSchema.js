@@ -9,7 +9,7 @@ type Bid{
     adult: String
     child: String
     infont : String
-    personalcare : String
+    personalcare : Boolean
     travelby : String
     departurebetween : String
     hoteltype : String
@@ -24,10 +24,6 @@ type Bid{
     totaldays : String
     include_services : String
     exclude_services  : String
-    
-    
-    
-
 }
 
 
@@ -40,7 +36,7 @@ input BidInput{
     adult: String
     child: String
     infont : String
-    personalcare : String
+    personalcare : Boolean
     travelby : String
     departurebetween : String
     hoteltype : String
