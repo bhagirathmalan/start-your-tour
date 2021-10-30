@@ -10,6 +10,10 @@ type Admin{
     _id: ID!
     name: String!
   }
+  type Services{
+    _id: ID!
+    name:String!
+  }
   
   type AdminAuthData{
     userId: ID!

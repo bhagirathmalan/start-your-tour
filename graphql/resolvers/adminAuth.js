@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const _ = require("lodash");
 const Admin = require("../../models/admin");
 const Category = require("../../models/category");
+const Services_model = require("../../models/services");
 
 const { admin } = require("./merge");
 
@@ -132,5 +133,40 @@ module.exports = {
         console.log(err);
       }
     },
+    createServices: async (args, req) => {
+      try {
+        const servicesId = await Services_model.findOne({
+          name: args.name,
+        });
+        if (servicesId) {
+          throw new Error("service exisist already.");
+        }
+  
+        const services = new Services_model({
+          name: args.name,
+        });
+        const result = await services.save();
+  
+        return { ...result._doc, _id: result.id };
+      } catch (err) {
+        console.log(err);
+        throw err;
+      }
+    },
+    services: async () => {
+      try {
+        const servises = await Services_model.find();
+        return servises.map((service) => {
+          return {
+            ...service._doc,
+            _id: service.id,
+          };
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    
+
 
 };

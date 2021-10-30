@@ -16,6 +16,12 @@ type UserAuthData{
     tokenExpiration:Int!
   }
 
+input UpdateUser {
+   
+    fullname: String!
+    
+  }
+
 input UserInput {
     fullname : String!
     email : String!

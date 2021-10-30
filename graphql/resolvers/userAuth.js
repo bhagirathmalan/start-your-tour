@@ -164,6 +164,30 @@ module.exports = {
         throw err
       }
     },
+    updateUser: async (args, req) => {
+      try{
+       
+        const result = await User_model.findOneAndUpdate(
+          { _id: args._id },
+          {
+            fullname:args.fullname,
+
+           },
+          {
+            omitUndefined: true,
+            new: true,
+          }
+          );
+          return {
+            ...result._doc,
+            _id: result.id,
+            
+          };
+
+      }catch(err){
+        throw err;
+      }
+    },
 
       
         

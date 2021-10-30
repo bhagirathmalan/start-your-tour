@@ -1,18 +1,17 @@
 const { buildSchema } = require("graphql");
 const { userType } = require("./userSchema");
 const { adminType } = require("./adminSchema");
-const { agencyType } = require("./agencySchema")
-const { agencydetailType } = require("./agencydetailSchema")
+const { agencyType } = require("./agencySchema");
+const { bidType } = require("./bidSchema");
 const { custompackageType } = require("./custompackageSchema");
-const { agencygstdetailType } = require("./agencygstdetailSchema");
+
 
 
 const schema = `
 ${userType}
 ${adminType}
 ${agencyType}
-${agencydetailType}
-${agencygstdetailType}
+${bidType}
 ${custompackageType}
 
 
@@ -21,8 +20,9 @@ ${custompackageType}
     adminProfile : Admin!
     user : [User!]!
 
-  
+    agencys:[Agency!]!
     categorys: [Category!]!
+    services:[Services!]!
 
     userProfile_display(_id:String!): User!
 
@@ -39,14 +39,18 @@ ${custompackageType}
 
  type RootMutation{
     createUser(userInput: UserInput): User!
+    updateUser(_id:ID!, fullname:String!):User!
     createCustompackage(custompackageInput:CustompackageInput):Custompackage
     updateAdmin(name: String , password: String): Admin!
-    createCategory(name: String!): Category
+    createCategory(name: String!):Category
+    createServices(name:String!):Services
+
+    createBid(bidInput:BidInput):Bid
 
 
     createAgency(agencyInput: AgencyInput):Agency!
-    createAgencydetail(agencydetailInput:AgencydetailInput):Agencydetail!
-    createAgencygstdetail(agencygstdetailInput:AgencygstdetailInput):Agencygstdetail!
+    updateAgencyProfile( updateAgency: UpdateAgency, _id:ID!):Agency!
+   
     
 
     hide_custompackage(uid:String! , _id:String):String!

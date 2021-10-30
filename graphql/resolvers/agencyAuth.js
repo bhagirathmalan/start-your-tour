@@ -6,18 +6,30 @@ const User_model = require('../../models/user');
 const { transformCustompackage } = require("./merge");
 const custompackage = require("../../models/custompackage");
 const Agency_model = require("../../models/agency");
-const Agencydetail_model = require("../../models/agencydetail");
-const Agencygstdetail_model = require("../../models/agencygstdetail")
-const  { mergeAgencydetail } = require("./merge");
-const { mergeAgencygstdetail } = require("./merge");
+
+
 
 module.exports = {
+    agencys: async (args, req) => {
+        try {
+         const agencys = await Agency_model.find();
+          return agencys.map((agency) => {
+            return {
+              ...agency._doc,
+              _id: agency.id,
+              
+            };
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      },
 
         createAgency: async (args) => {
             try{
             const agency = new Agency_model({
-                firstName:args.agencyInput.firstname,
-                lastName:args.agencyInput.lastName,
+                firstname:args.agencyInput.firstname,
+                lastname:args.agencyInput.lastname,
                 phone:args.agencyInput.phone,
                 email:args.agencyInput.email,
                 residentialaddress:args.agencyInput.residentialaddress,
@@ -28,6 +40,46 @@ module.exports = {
                 country:args.agencyInput.country,
                 state:args.agencyInput.state,
                 city:args.agencyInput.city,
+                agencyname:args.agencyInput.agencyname,
+                pan:args.agencyInput.pan,
+                attatchpancopy:args.agencyInput.attatchpancopy,
+                agencyphone:args.agencyInput.agencyphone,
+                agencyaddress:args.agencyInput.agencyaddress,
+                agencyaddress2:args.agencyInput.agencyaddress2,
+                fax:args.agencyInput.fax,
+                agencypincode:args.agencyInput.agencypincode,
+                agencycountry:args.agencyInput.agencycountry,
+                agencycity:args.agencyInput.agencycity,
+                bussinesstype:args.agencyInput.bussinesstype,
+                officespace:args.agencyInput.officespace,
+                iataregisterd:args.agencyInput.iataregisterd,
+                securitizationmode:args.agencyInput.securitizationmode,
+                yearsinbusiness:args.agencyInput.yearsinbusiness,
+                montlybookingvolume:args.agencyInput.montlybookingvolume,
+                tdsexemption:args.agencyInput.tdsexemption,
+                tdspersentforexemption:args.agencyInput.tdspersentforexemption,
+                references:args.agencyInput.references,
+                consolidators:args.agencyInput.consolidators,
+                remarks:args.agencyInput.remarks,
+                agencynamesecondtime:args.agencyInput.agencynamesecondtime,
+                agencyclasification:args.agencyInput.agencyclasification,
+                agencygstin:args.agencyInput.agencygstin,
+                agencystate:args.agencyInput.agencystate,
+                agencystatecode:args.agencyInput.agencystatecode,
+                provisionalgstno:args.agencyInput.provisionalgstno,
+                contactperson:args.agencyInput.contactperson,
+                phone2:args.agencyInput.phone2,
+                mobile:args.agencyInput.mobile,
+                agencyemail:args.agencyInput.agencyemail,
+                correspondenceemail:args.agencyInput.correspondenceemail,
+                gstregistrationstatus:args.agencyInput.gstregistrationstatus,
+                hsncode:args.agencyInput.hsncode,
+                compositionlevy:args.agencyInput.compositionlevy,
+                gstaddress:args.agencyInput.gstaddress,
+                gstaddress2:args.agencyInput.gstaddress2,
+               
+                
+                supplytype:args.agencyInput.supplytype,
                 })
                 const result = await agency.save();
                 return{
@@ -39,80 +91,76 @@ module.exports = {
             };
 
         },
-        createAgencydetail:  async (args,req) => {
-                 
-                const agencydetail = new Agencydetail_model({
-                    agency: req.agency_id,
-                    agencyname:args.agencydetailInput.agencyname,
-                    pan:args.agencydetailInput.pan,
-                    attatchpancopy:args.agencydetailInput.attatchpancopy,
-                    phone:args.agencydetailInput.phone,
-                    address:args.agencydetailInput.address,
-                    address2:args.agencydetailInput.address2,
-                    fax:args.agencydetailInput.fax,
-                    pincode:args.agencydetailInput.pincode,
-                    country:args.agencydetailInput.country,
-                    city:args.agencydetailInput.city,
-                    bussinesstype:args.agencydetailInput.bussinesstype,
-                    officespace:args.agencydetailInput.officespace,
-                    iataregisterd:args.agencydetailInput.iataregisterd,
-                    securitizationmode:args.agencydetailInput.securitizationmode,
-                    yearsinbusiness:args.agencydetailInput.yearsinbusiness,
-                    montlybookingvolume:args.agencydetailInput.montlybookingvolume,
-                    tdsexemption:args.agencydetailInput.tdsexemption,
-                    tdspersentforexemption:args.agencydetailInput.tdspersentforexemption,
-                    references:args.agencydetailInput.references,
-                    consolidators:args.agencydetailInput.consolidators,
-                    remarks:args.agencydetailInput.remarks,
-                });
-                let agencyed;
-                try{
-                    const result = await agencydetail.save();
-                    agencyed = mergeAgencydetail(result);
-                    const agency = await Agency_model.findById(req.agency_id);
-
-                    agency.agencyed.push(agencydetail);
-                    await agency.save();
-                    return agencyed;
-                }catch(err){
-                throw err
-            }
-            
+        updateAgencyProfile: async (args, req) => {
+          
+    try {
+      const result = await Agency_model.findOneAndUpdate(
+        { _id: args._id },
+        {
+          firstname:args.updateAgency.firstname,
+          lastname:args.updateAgency.lastname,
+          phone:args.updateAgency.phone,
+          email:args.updateAgency.email,
+          residentialaddress:args.updateAgency.residentialaddress,
+          residentialaddress2:args.updateAgency.residentialaddress2,
+          mobilenumber:args.updateAgency.mobilenumber,
+          pincode:args.updateAgency.pincode,
+          skypeid:args.updateAgency.skypeid,
+          country:args.updateAgency.country,
+          state:args.updateAgency.state,
+          city:args.updateAgency.city,
+          agencyname:args.updateAgency.agencyname,
+          pan:args.updateAgency.pan,
+          attatchpancopy:args.updateAgency.attatchpancopy,
+          agencyphone:args.updateAgency.agencyphone,
+          agencyaddress:args.updateAgency.agencyaddress,
+          agencyaddress2:args.updateAgency.agencyaddress2,
+          fax:args.updateAgency.fax,
+          agencypincode:args.updateAgency.agencypincode,
+          agencycountry:args.updateAgency.agencycountry,
+          agencycity:args.updateAgency.agencycity,
+          bussinesstype:args.updateAgency.bussinesstype,
+          officespace:args.updateAgency.officespace,
+          iataregisterd:args.updateAgency.iataregisterd,
+          securitizationmode:args.updateAgency.securitizationmode,
+          yearsinbusiness:args.updateAgency.yearsinbusiness,
+          montlybookingvolume:args.updateAgency.montlybookingvolume,
+          tdsexemption:args.updateAgency.tdsexemption,
+          tdspersentforexemption:args.updateAgency.tdspersentforexemption,
+          references:args.updateAgency.references,
+          consolidators:args.updateAgency.consolidators,
+          remarks:args.updateAgency.remarks,
+          agencynamesecondtime:args.updateAgency.agencynamesecondtime,
+          agencyclasification:args.updateAgency.agencyclasification,
+          agencygstin:args.updateAgency.agencygstin,
+          agencystate:args.updateAgency.agencystate,
+          agencystatecode:args.updateAgency.agencystatecode,
+          provisionalgstno:args.updateAgency.provisionalgstno,
+          contactperson:args.updateAgency.contactperson,
+          phone2:args.updateAgency.phone2,
+          mobile:args.updateAgency.mobile,
+          agencyemail:args.updateAgency.agencyemail,
+          correspondenceemail:args.updateAgency.correspondenceemail,
+          gstregistrationstatus:args.updateAgency.gstregistrationstatus,
+          hsncode:args.updateAgency.hsncode,
+          compositionlevy:args.updateAgency.compositionlevy,
+          gstaddress:args.updateAgency.gstaddress,
+          gstaddress2:args.updateAgency.gstaddress2,
+        
         },
-        createAgencygstdetail:  async (args,req) => {
+        {
+          omitUndefined: true,
+          new: true,
+        }
+      );
+      return{
+        ...result._doc,
+        _id:result.id
+      };
 
-            const fetchedgstdetail = await Agency_model.findOne({ _id: args._id });
-                const agencygstdetail =  new Agencygstdetail_model({
-                    agency: fetchedgstdetail,
-                    agencyname:args.agencygstdetailInput.agencyname,
-                    agencyclasification:args.agencygstdetailInput.agencyclasification,
-                    agencygstin:args.agencygstdetailInput.agencygstin,
-                    state:args.agencygstdetailInput.state,
-                    statecode:args.agencygstdetailInput.statecode,
-                    provisionalgstno:args.agencygstdetailInput.provisionalgstno,
-                    contactperson:args.agencygstdetailInput.contactperson,
-                    phone:args.agencygstdetailInput.phone,
-                    mobile:args.agencygstdetailInput.mobile,
-                    email:args.agencygstdetailInput.email,
-                    correspondenceemail:args.agencygstdetailInput.correspondenceemail,
-                    gstregistrationstatus:args.agencygstdetailInput.gstregistrationstatus,
-                    hsncode:args.agencygstdetailInput.hsncode,
-                    compositionlevy:args.agencygstdetailInput.compositionlevy,
-                    address:args.agencygstdetailInput.address,
-                    address2:args.agencygstdetailInput.address2,
-                    pincode:args.agencygstdetailInput.pincode,
-                    agencycity:args.agencygstdetailInput.agencycity,
-                    supplytype:args.agencygstdetailInput.supplytype,
-                    });
-                    try{
-                        const result = await agencygstdetail.save();
-                        
-                        return mergeAgencygstdetail(result);
-
-                    }catch(err){
-                        throw err;
-                    }
-        },
-
+        }catch(err){
+          throw err;
+        };
+      },
 
 };
