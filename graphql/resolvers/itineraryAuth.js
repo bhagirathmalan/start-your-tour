@@ -38,7 +38,7 @@ module.exports = {
           return {
             ...itinerary._doc,
             _id: itinerary.id,
-           
+            bidId: singlebid.bind(this, itinerary.bidId),
           };
         } catch (err) {
           console.log(err);

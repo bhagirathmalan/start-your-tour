@@ -23,6 +23,7 @@ type Bid{
     city : String
     cotation : String
     totaldays : String
+    bid_status : String
     include_services : String
     exclude_services  : String
 }
@@ -47,6 +48,7 @@ input UpdateBid{
     city : String
     cotation : String
     totaldays : String
+    bid_status : String
     include_services : String
     exclude_services  : String
 
@@ -75,6 +77,7 @@ input BidInput{
     city : String
     cotation : String
     totaldays : String
+    bid_status : String
     include_services : String
     exclude_services  : String
 

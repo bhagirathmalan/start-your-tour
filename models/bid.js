@@ -90,6 +90,13 @@ const bidSchema = new Schema(
             type: String,
             required: true,
           },
+          bid_status: {
+            type: String,
+            enum: {
+              values: ["pendding", "canclebyagency", "canclebyuser", "approvedbyuser"],
+            },
+            
+          },
           include_services: {
             type: String,
             required: true,

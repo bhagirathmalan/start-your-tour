@@ -28,6 +28,7 @@ module.exports = {
           city: args.bidInput.city,
           cotation: args.bidInput.cotation,
           totaldays: args.bidInput.totaldays,
+          bid_status: args.bidInput.bid_status,
           include_services: args.bidInput.include_services,
           exclude_services: args.bidInput.exclude_services,
           

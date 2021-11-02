@@ -12,7 +12,8 @@ const itinerarySchema = new Schema(
             {
            
                 type: Schema.Types.ObjectId,
-                ref: 'Bid',
+                ref: "Bid",
+                required: true,
     
             },
    
