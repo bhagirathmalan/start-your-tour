@@ -8,6 +8,10 @@ const custompackageSchema = new Schema(
           type: String,
           required: true,
         },
+        bidId: {
+          type: Schema.Types.ObjectId,
+          ref: "Bid",
+        },
         departurelocation: {
             type: String,
             required: true,

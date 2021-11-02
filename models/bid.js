@@ -5,9 +5,13 @@ const Schema = mongoose.Schema;
 const bidSchema = new Schema(
     {   
         agencyId: {
-          type: String,
-          required: true,
+          type: Schema.Types.ObjectId,
+          ref: "Agency",
         },
+        custompackageId:{
+            type: Schema.Types.ObjectId,
+            ref: "Custompackage",
+          },
 
         departurelocation: {
             type: String,

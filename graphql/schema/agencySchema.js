@@ -1,6 +1,7 @@
 const agencyType = `
 type Agency{
   _id: ID!
+  bidId:Bid
   firstname: String
   lastname:String!
   phone: String!

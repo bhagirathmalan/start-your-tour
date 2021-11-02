@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Itinerary_model = require("../../models/itinerary");
+const { singlebid } = require("./merge");
 
 
 
@@ -29,4 +30,20 @@ module.exports = {
 
 
     },
+    itineraryDisplay: async (args, req) => {
+        try {
+          const itinerary = await Itinerary_model.findOne({
+            $or: [{ _id: args.itineraryId }, { _id: req.bidId }],
+          });
+          return {
+            ...itinerary._doc,
+            _id: itinerary.id,
+           
+          };
+        } catch (err) {
+          console.log(err);
+        }
+
+
+      },
 };

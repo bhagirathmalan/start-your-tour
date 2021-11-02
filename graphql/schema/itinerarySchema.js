@@ -3,7 +3,7 @@ const itineraryType = `
 type Itinerary{
     _id : ID!
     days : String
-    bidId : String
+    bidId : Bid
     title: String
     activity: String
     hotelname:String
@@ -12,7 +12,6 @@ type Itinerary{
 
 input ItineraryInput {
     days : String
-    bidId : String
     title: String
     activity: String
     hotelname:String

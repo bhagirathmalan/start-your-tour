@@ -35,7 +35,7 @@ ${custompackageType}
     userlogin(username: String! , password: String! , userType:String! ): UserAuthData!
     adminlogin(username: String! , password: String! ): AdminAuthData!   
 
-    
+    itineraryDisplay(itineraryId:String!) : Itinerary
 
 
     custompackage_display(id:String!): [Custompackage!]
@@ -52,6 +52,7 @@ ${custompackageType}
     
 
     createBid(bidInput:BidInput):Bid
+    updateBid( updateBid: UpdateBid, _id:ID!):Bid!
     createItinerary(itineraryInput:ItineraryInput):Itinerary!
 
     createAgency(agencyInput: AgencyInput):Agency!

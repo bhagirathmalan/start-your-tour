@@ -3,6 +3,7 @@ const custompackageType = `
 type Custompackage{
     _id : ID
     userId: String
+    bidId:Bid
     departurelocation : String
     destinationlocation : String
     category: String
@@ -33,6 +34,7 @@ type Custompackage{
 
 input CustompackageInput{
     userId:String
+
     departurelocation : String
     destinationlocation : String
     category: String

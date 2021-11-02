@@ -8,6 +8,7 @@ module.exports = {
         const bid = new Bid_model({
   
           agencyId: args.bidInput.agencyId,
+          custompackageId:args.bidInput.custompackageId,
           departurelocation: args.bidInput.departurelocation,
           destinationlocation: args.bidInput.destinationlocation,
           category: args.bidInput.category,
@@ -44,4 +45,51 @@ module.exports = {
       }
   
     },
+    updateBid: async (args, req) => {
+          
+      try {
+        const result = await Bid_model.findOneAndUpdate(
+          { _id: args._id },
+          { 
+            departurelocation: args.updateBid.departurelocation,
+            destinationlocation: args.updateBid.destinationlocation,
+            category: args.updateBid.category,
+            adult: args.updateBid.adult,
+            child: args.updateBid.child,
+            infont: args.updateBid.infont,
+            personalcare: "no",
+            travelby: args.updateBid.travelby,
+            departurebetween: args.updateBid.departurebetween,
+            hoteltype: args.updateBid.hoteltype,
+            meals: args.updateBid.meals,
+            mealtype: args.updateBid.mealtype,
+            additionalrequirements: args.updateBid.additionalrequirements,
+            name: args.updateBid.name,
+            email: args.updateBid.email,
+            phone: args.updateBid.phone,
+            city: args.updateBid.city,
+            cotation: args.updateBid.cotation,
+            totaldays: args.updateBid.totaldays,
+            include_services: args.updateBid.include_services,
+            exclude_services: args.updateBid.exclude_services,
+            
+            
+           
+          
+          },
+          {
+            omitUndefined: true,
+            new: true,
+          }
+        );
+        return{
+          ...result._doc,
+          _id:result.id
+        };
+  
+          }catch(err){
+            throw err;
+          };
+        },
+       
 };

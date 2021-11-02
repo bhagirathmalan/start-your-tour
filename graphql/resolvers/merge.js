@@ -4,6 +4,7 @@ const User = require('../../models/user')
 const Custompackage = require("../../models/custompackage");
 
 const Agency_model = require("../../models/agency");
+const Bid_model = require("../../models/bid");
 
 
 const admin = async (adminId) => {
@@ -38,11 +39,20 @@ const transformCustompackage =  custompackage => {
   };
 
 };
+const singlebid = async (bidId) => {
+  try {
+    const bid = await Bid_model.findById(bidId);
+    return { ...bid._doc, _id: bid.id };
+  } catch (err) {
+    throw err;
+  }
+};
   
 
 
   
   exports.category = category;
+  exports.singlebid = singlebid;
   
   exports.admin = admin;
   exports.transformCustompackage = transformCustompackage;

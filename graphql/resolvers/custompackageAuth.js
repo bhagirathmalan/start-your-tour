@@ -45,6 +45,7 @@ module.exports = {
         const custompackage = new Custompackage_model({
 
         userId: args.custompackageInput.userId,
+        bidId: args.custompackageInput.bidId,
         departurelocation: args.custompackageInput.departurelocation,
         destinationlocation: args.custompackageInput.destinationlocation,
         category: args.custompackageInput.category,

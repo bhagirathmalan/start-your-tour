@@ -28,6 +28,7 @@ module.exports = {
         createAgency: async (args) => {
             try{
             const agency = new Agency_model({
+                bidId:args.agencyInput.bidId,
                 firstname:args.agencyInput.firstname,
                 lastname:args.agencyInput.lastname,
                 phone:args.agencyInput.phone,
@@ -96,7 +97,8 @@ module.exports = {
     try {
       const result = await Agency_model.findOneAndUpdate(
         { _id: args._id },
-        {
+        { 
+          
           firstname:args.updateAgency.firstname,
           lastname:args.updateAgency.lastname,
           phone:args.updateAgency.phone,
