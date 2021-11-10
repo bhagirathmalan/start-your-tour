@@ -5,6 +5,7 @@ const Custompackage = require("../../models/custompackage");
 
 const Agency_model = require("../../models/agency");
 const Bid_model = require("../../models/bid");
+const Itinerary_model = require("../../models/itinerary");
 
 
 const admin = async (adminId) => {
@@ -41,18 +42,52 @@ const transformCustompackage =  custompackage => {
 };
 const singlebid = async (bidId) => {
   try {
-    const bid = await Bid_model.findById(bidId);
-    return { ...bid._doc, _id: bid.id };
+    const bid = await Bid_model.findOne(bidId);
+    return { ...bid._doc, _id: bid._id };
   } catch (err) {
     throw err;
   }
 };
+ const singleitineraryid = async (itineraryId) => {
+  try {
+    const itinerary = await Itinerary_model.findOne(itineraryId);
+    return { ...itinerary._doc, _id: itinerary._id };
+  } catch (err) {
+    throw err;
+  }  
+};
+
+const mergeItinerary = itinerary => {
+  return {
+      ...itinerary._doc,
+      _id: itinerary.id,
+     
+      bidId: singlebidd.bind(this, itinerary._doc.bidId),
+     
+};
+
+};
+const singlebidd = async bidId => {
+  try {
+      const bid = await Bid_model.findById(bidId);
+      return {
+          ...bid._doc,
+          _id: bid.id,
+        
+      };
+
+  } catch (err) {
+      throw err;
+  }
+};
+ 
   
 
 
-  
+  exports.singlebidd = singlebidd;
   exports.category = category;
   exports.singlebid = singlebid;
-  
+  exports.singleitineraryid = singleitineraryid;
+  exports.mergeItinerary = mergeItinerary;
   exports.admin = admin;
   exports.transformCustompackage = transformCustompackage;

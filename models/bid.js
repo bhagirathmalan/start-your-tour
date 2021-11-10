@@ -12,6 +12,14 @@ const bidSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: "Custompackage",
           },
+        itineraryId:
+          {
+         
+              type: Schema.Types.ObjectId,
+              ref: 'Itinerary',
+             
+  
+          },
 
         departurelocation: {
             type: String,

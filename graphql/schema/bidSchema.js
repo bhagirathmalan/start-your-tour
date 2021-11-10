@@ -1,9 +1,10 @@
 const bidType = `
 
 type Bid{
-    _id : ID
+    _id : ID!
     agencyId: Agency
     custompackageId : Custompackage
+    itineraryId:Itinerary
     departurelocation : String
     destinationlocation : String
     category: String

@@ -24,6 +24,7 @@ ${custompackageType}
  type RootQuery{
     adminProfile : Admin!
     user : [User!]!
+    itinerarys : Itinerary
 
     agencys:[Agency!]!
     categorys: [Category!]!
@@ -36,6 +37,7 @@ ${custompackageType}
     adminlogin(username: String! , password: String! ): AdminAuthData!   
 
     itineraryDisplay(itineraryId:String!) : Itinerary
+    bidDisplay(bidId:String!) : Bid
 
 
     custompackage_display(id:String!): [Custompackage!]

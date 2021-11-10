@@ -1,5 +1,7 @@
 const { dateToString } = require("../../helpers/date");
 const Bid_model = require("../../models/bid");
+const { singleitineraryid } = require("./merge");
+const Itinerary_model= require("../../models/itinerary");
 
 module.exports = {
 
@@ -9,6 +11,7 @@ module.exports = {
   
           agencyId: args.bidInput.agencyId,
           custompackageId:args.bidInput.custompackageId,
+          itineraryId:args.bidInput.itineraryId,
           departurelocation: args.bidInput.departurelocation,
           destinationlocation: args.bidInput.destinationlocation,
           category: args.bidInput.category,
@@ -92,5 +95,20 @@ module.exports = {
             throw err;
           };
         },
-       
+        bidDisplay: async (args, req) => {
+          try {
+            const bid = await Bid_model.findOne({ _id: args.bidId});
+            
+            return {
+              ...bid._doc,
+              _id: bid.id,
+              itineraryId: singleitineraryid.bind(this, bid.itineraryId),
+            };
+          } catch (err) {
+            console.log(err);
+          };
+    
+    
+        },
+      
 };
