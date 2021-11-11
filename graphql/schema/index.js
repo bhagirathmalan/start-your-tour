@@ -37,7 +37,7 @@ ${custompackageType}
     adminlogin(username: String! , password: String! ): AdminAuthData!   
 
     itineraryDisplay(itineraryId:String!) : Itinerary
-    bidDisplay(bidId:String!) : Bid
+    bidDisplay(bidId:String!) : Bid!
 
 
     custompackage_display(id:String!): [Custompackage!]

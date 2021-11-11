@@ -11,10 +11,10 @@ module.exports = {
 
     createItinerary: async (args,req) => {
         try{
-        const fetchedbid = await Bid_model.findOne({ _id: args.bidId });
+      
         const itinerary = new Itinerary_model({
             days:args.itineraryInput.days,
-            bidId:fetchedbid,
+            bidId:args.itineraryInput.bidId,
             title:args.itineraryInput.title,
             activity:args.itineraryInput.activity,
             hotelname:args.itineraryInput.hotelname,
@@ -22,7 +22,10 @@ module.exports = {
         });
 
         const result = await itinerary.save();
-        return mergeItinerary(result);
+        return {
+          ...result._doc,
+          _id: result.id,
+        };
     }catch(err){
         throw err;
     }

@@ -8,14 +8,11 @@ const itinerarySchema = new Schema(
             type: String,
             require: true,
         },
-        bidId:
-            {
-           
-                type: Schema.Types.ObjectId,
-                ref: 'Bid',
-               
-    
-            },
+        bidId:{
+            type: String,
+            require: true,
+
+        },
         
         title:{
             type: String,
