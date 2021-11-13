@@ -5,23 +5,20 @@ const Schema = mongoose.Schema;
 const bidSchema = new Schema(
     {   
         agencyId: {
-          type: Schema.Types.ObjectId,
-          ref: "Agency",
+          type: String,
+          required: true,
         },
         custompackageId:{
+          type: String,
+          required: true,
+          },
+        itineraryId:[{
+          
             type: Schema.Types.ObjectId,
-            ref: "Custompackage",
-          },
-        itineraryId:
-          {
-         
-              type: Schema.Types.ObjectId,
-              ref: 'Itinerary',
+            ref: 'Itinerary',
              
-  
-          },
-
-        departurelocation: {
+          }],
+          departurelocation: {
             type: String,
             required: true,
           },

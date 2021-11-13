@@ -1,6 +1,7 @@
 const { dateToString } = require("../../helpers/date");
 const Bid_model = require("../../models/bid");
 const { singleitineraryid } = require("./merge");
+const { mergeItinerary } = require("./merge");
 const Itinerary_model= require("../../models/itinerary");
 
 module.exports = {
@@ -97,12 +98,12 @@ module.exports = {
         },
         bidDisplay: async (args, req) => {
           try {
-            const bid = await Bid_model.findOne({ _id: args.bidId});
+            const bid = await Bid_model.findById({ _id: args.bidId});
             
             return {
               ...bid._doc,
               _id: bid.id,
-              itineraryId: singleitineraryid.bind(this, bid.itineraryId),
+              itineraryId: singleitineraryid.bind(this, bid._doc.itineraryId),
             };
           } catch (err) {
             console.log(err);

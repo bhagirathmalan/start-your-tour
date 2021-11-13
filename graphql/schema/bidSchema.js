@@ -3,8 +3,8 @@ const bidType = `
 type Bid{
     _id : ID!
     agencyId: Agency
-    custompackageId : Custompackage
-    itineraryId:Itinerary
+    custompackageId : Custompackage!
+    itineraryId:[Itinerary!]
     departurelocation : String
     destinationlocation : String
     category: String
@@ -58,7 +58,10 @@ input UpdateBid{
 
 input BidInput{
     
- 
+    
+    agencyId: String
+    custompackageId : String
+
     departurelocation : String
     destinationlocation : String
     category: String

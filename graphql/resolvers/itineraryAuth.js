@@ -47,18 +47,5 @@ module.exports = {
 
 
     },
-    itinerarys: async () => {
-      try {
-        const itinerarys = await Itinerary_model.find();
-        return itinerarys.map((itinerary) => {
-          return {
-            ...itinerary._doc,
-            _id:itinerary.id,
-           
-          };
-        });
-      } catch (err) {
-        console.log(err);
-      };
-    },
+   
 };

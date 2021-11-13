@@ -48,13 +48,21 @@ const singlebid = async (bidId) => {
     throw err;
   }
 };
- const singleitineraryid = async (itineraryId) => {
-  try {
-    const itinerary = await Itinerary_model.findOne(itineraryId);
-    return { ...itinerary._doc, _id: itinerary._id };
-  } catch (err) {
+
+ const singleitineraryid = (bidId) => {
+  return Itinerary_model.find(bidId).populate({path:'bidId',select:['days','title','activity','hotelname']})
+  .then(itenerarys => {
+      return itenerarys.map(itenerary => {
+        return  {
+          ...itenerary._doc,
+          _id:itenerary.id,
+
+        };
+      });
+  })
+  .catch(err => {
     throw err;
-  }  
+  });
 };
 
 const mergeItinerary = itinerary => {
